@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0f8b58">
+<title>Apna Bazaar</title>
+<style>
+:root{--green:#108653;--dark:#123d2d;--muted:#718078;--bg:#f4f7f5;--line:#e7eee9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:#18231d}
+.top{background:linear-gradient(135deg,#087747,#19a66b);color:white;padding:20px 17px 24px;border-radius:0 0 23px 23px}
+.brand{font-size:23px;font-weight:800;letter-spacing:.2px}.sub{font-size:12px;opacity:.9;margin-top:4px}
+.location{font-size:12px;margin-top:17px;opacity:.95}.search{margin-top:12px;background:white;color:#829087;border-radius:12px;padding:13px;font-size:13px}
+.wrap{padding:16px}.rolebar{display:flex;gap:8px;overflow:auto;margin-bottom:16px}
+.role{border:1px solid #dce8e0;background:white;border-radius:20px;padding:9px 13px;font-size:12px;white-space:nowrap;color:#315342}
+.role.active{background:#e2f5e9;border-color:#b6e2c6;color:#087747;font-weight:bold}
+.section{display:flex;align-items:center;justify-content:space-between;margin:18px 0 11px}
+.section b{font-size:16px}.section small{color:var(--green)}
+.banner{background:#e4f5eb;border-radius:16px;padding:15px;display:flex;justify-content:space-between;align-items:center}
+.banner strong{font-size:15px;color:#145b3a}.banner p{font-size:11px;color:#547463;margin:5px 0 0}.banner .emoji{font-size:36px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cat{background:white;border-radius:13px;padding:12px 4px;text-align:center;border:1px solid var(--line)}
+.cat span{font-size:25px;display:block;margin-bottom:6px}.cat small{font-size:11px;color:#42554a}
+.shop{background:white;border:1px solid var(--line);border-radius:14px;padding:13px;display:flex;gap:12px;align-items:center}
+.shopicon{width:49px;height:49px;background:#e8f6ed;border-radius:12px;display:grid;place-items:center;font-size:25px}
+.shopinfo{flex:1}.shopinfo b{font-size:13px}.shopinfo small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.open{background:#e2f5e9;color:#087747;padding:7px 10px;border-radius:9px;font-size:11px;font-weight:bold}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.product{background:white;border:1px solid var(--line);border-radius:14px;padding:11px}
+.pic{height:90px;background:#f2f7f3;border-radius:10px;display:grid;place-items:center;font-size:43px}
+.product b{display:block;font-size:12px;margin-top:9px}.price{font-size:12px;color:#243d30;margin-top:5px}
+.qty{display:flex;align-items:center;justify-content:space-between;margin-top:9px}
+.qty button{border:0;background:#e4f5eb;color:#087747;border-radius:8px;width:29px;height:27px;font-size:18px;font-weight:bold}
+.qty span{font-size:12px}
+.nav{position:sticky;bottom:0;background:white;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:11px 4px;color:#65766c;font-size:10px}
+.nav div{text-align:center}.nav span{display:block;font-size:18px;margin-bottom:3px}
+.note{font-size:10px;color:#829087;text-align:center;padding:10px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">🛒 Apna Bazaar</div>
+  <div class="sub">आपकी अपनी लोकल शॉपिंग ऐप</div>
+  <div class="location">📍 मालपुरा, राजस्थान　⌄</div>
+  <div class="search">⌕　सामान खोजें — दूध, आटा, चावल...</div>
+</header>
+<main class="wrap">
+  <div class="rolebar">
+    <button class="role active" onclick="setRole(this,'Customer')">Customer</button>
+    <button class="role" onclick="setRole(this,'Shopkeeper')">Shopkeeper</button>
+    <button class="role" onclick="setRole(this,'Super Admin')">Super Admin</button>
+  </div>
+  <div class="banner">
+    <div><strong id="welcome">घर का सामान, अब पास की दुकान से</strong><p id="hint">अपनी पसंद की दुकान चुनें और ऑर्डर करें</p></div>
+    <div class="emoji">🏪</div>
+  </div>
+  <div class="section"><b>श्रेणियाँ</b><small>सभी देखें</small></div>
+  <div class="cats">
+    <div class="cat"><span>🥛</span><small>डेयरी</small></div>
+    <div class="cat"><span>🌾</span><small>आटा-दाल</small></div>
+    <div class="cat"><span>🍚</span><small>चावल</small></div>
+    <div class="cat"><span>🧂</span><small>मसाले</small></div>
+    <div class="cat"><span>🛢️</span><small>तेल</small></div>
+    <div class="cat"><span>🍪</span><small>बिस्कुट</small></div>
+    <div class="cat"><span>🧼</span><small>घरेलू</small></div>
+    <div class="cat"><span>🥔</span><small>आलू-प्याज</small></div>
+  </div>
+  <div class="section"><b id="listTitle">आपके पास की दुकानें</b><small>और देखें</small></div>
+  <div class="shop">
+    <div class="shopicon">🏬</div>
+    <div class="shopinfo"><b>श्री बालाजी किराना स्टोर</b><small>⭐ 4.8　•　लगभग 60 मिनट में डिलीवरी</small></div>
+    <div class="open">दुकान खोलें</div>
+  </div>
+  <div class="section"><b>लोकप्रिय सामान</b><small>दुकान चुनने के बाद</small></div>
+  <div class="products">
+    <div class="product"><div class="pic">🥛</div><b>ताज़ा दूध</b><div class="price">₹ 60 / लीटर</div><div class="qty"><button onclick="change(this,-1)">−</button><span>0</span><button onclick="change(this,1)">+</button></div></div>
+    <div class="product"><div class="pic">🌾</div><b>गेहूँ का आटा</b><div class="price">₹ 42 / किलो</div><div class="qty"><button onclick="change(this,-1)">−</button><span>0</span><button onclick="change(this,1)">+</button></div></div>
+    <div class="product"><div class="pic">🍚</div><b>बासमती चावल</b><div class="price">₹ 95 / किलो</div><div class="qty"><button onclick="change(this,-1)">−</button><span>0</span><button onclick="change(this,1)">+</button></div></div>
+    <div class="product"><div class="pic">🧅</div><b>प्याज</b><div class="price">₹ 30 / किलो</div><div class="qty"><button onclick="change(this,-1)">−</button><span>0</span><button onclick="change(this,1)">+</button></div></div>
+  </div>
+  <div class="note">UI Preview • नमूना उत्पाद और कीमतें • Firebase अभी जुड़ा नहीं है</div>
+</main>
+<footer class="nav"><div><span>⌂</span>होम</div><div><span>▦</span>कैटेगरी</div><div><span>🛍️</span>कार्ट</div><div><span>♙</span>प्रोफाइल</div></footer>
+<script>
+function change(btn,delta){const s=btn.parentElement.querySelector('span');s.textContent=Math.max(0,Number(s.textContent)+delta)}
+function setRole(btn,role){
+ document.querySelectorAll('.role').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+ const w=document.getElementById('welcome'),h=document.getElementById('hint'),t=document.getElementById('listTitle');
+ if(role==='Customer'){w.textContent='घर का सामान, अब पास की दुकान से';h.textContent='अपनी पसंद की दुकान चुनें और ऑर्डर करें';t.textContent='आपके पास की दुकानें'}
+ else if(role==='Shopkeeper'){w.textContent='अपनी दुकान संभालें';h.textContent='उत्पाद, कीमत और स्टॉक का Preview';t.textContent='आपकी दुकान का डैशबोर्ड'}
+ else{w.textContent='Super Admin Dashboard';h.textContent='दुकानों और अनुरोधों का Preview';t.textContent='दुकान प्रबंधन'}
+}
+</script>
+</body>
+</html>
